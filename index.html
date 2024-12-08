@@ -28,13 +28,18 @@
     <p id="message" style="color: red; font-weight: bold;"></p>
 
     <script>
+        function setCookie(name, value, days) {
+            const expires = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toUTCString();
+            document.cookie = `${name}=${value}; expires=${expires}; path=/`;
+        }
+
         function checkPasscode() {
             const passcode = document.getElementById("passcode").value;
             const correctPasscode = "1234apt"; // Replace with your desired passcode
 
             if (passcode === correctPasscode) {
-                // Redirect to YouTube with the passcode bypass parameter
-                window.location.href = "https://www.youtube.com?passcode=true";
+                setCookie("access_granted", "true", 1); // Set a cookie for 1 day
+                window.location.href = "https://www.youtube.com";
             } else {
                 document.getElementById("message").innerText = "Incorrect passcode!";
             }
