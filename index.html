@@ -1,24 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Passcode Verification</title>
-  <script>
-    function checkPasscode() {
-      const passcode = document.getElementById("passcode").value;
-      if (passcode === "12345687") {
-        // Redirect to YouTube
-        window.location.href = "https://www.youtube.com";
-      } else {
-        alert("Incorrect passcode. Try again!");
-      }
-    }
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Restricted</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 20%;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-  <h1>Enter the Passcode to Proceed</h1>
-  <input type="password" id="passcode" placeholder="Enter passcode">
-  <button onclick="checkPasscode()">Submit</button>
+    <h1>Enter Passcode to Access YouTube</h1>
+    <input type="password" id="passcode" placeholder="Enter Passcode">
+    <button onclick="checkPasscode()">Submit</button>
+    <p id="message" style="color: red; font-weight: bold;"></p>
+
+    <script>
+        function checkPasscode() {
+            const passcode = document.getElementById("passcode").value;
+            const correctPasscode = "1234apt"; // Replace with your desired passcode
+
+            if (passcode === correctPasscode) {
+                // Redirect to YouTube with the passcode bypass parameter
+                window.location.href = "https://www.youtube.com?passcode=true";
+            } else {
+                document.getElementById("message").innerText = "Incorrect passcode!";
+            }
+        }
+    </script>
 </body>
 </html>
